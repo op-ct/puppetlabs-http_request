@@ -83,6 +83,8 @@ class HTTPRequest < TaskHelper
 
   # Parses the response body.
   def parse_response_body(response, json)
+    return nil if response.code.to_i == 204
+
     body = encode_body(response.read_body, response.type_params['charset'])
 
     if json
